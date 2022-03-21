@@ -1,4 +1,10 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+} from "@nestjs/common";
 import { AppService } from "./app.service";
 
 @Controller()
@@ -11,7 +17,13 @@ export class AppController {
   }
 
   @Get("routeToLocation/:bbox")
-  getRouteToLocation(@Param("bbox") bbox: string) {
-    return this.appService.getRouteToLocation(bbox);
+  async getRouteToLocation(@Param("bbox") bbox: string): Promise<string> {
+    const [err, routeLocation] = await this.appService.getRouteToLocation(bbox);
+    if (err) {
+      // Notify client about the exception
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    }
+    // The valid response is a javascript object of GeoJSON data
+    return routeLocation;
   }
 }
