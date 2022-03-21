@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import fetch from "node-fetch";
+import axios from "axios";
 
 @Injectable()
 export class AppService {
@@ -11,7 +11,7 @@ export class AppService {
   async getRouteToLocation(bbox: string) {
     let data;
     try {
-      data = await fetch(
+      data = await axios.get(
         `https://wiki.openstreetmap.org/api/0.6/map?bbox=${bbox}`
       );
     } catch (ex) {
