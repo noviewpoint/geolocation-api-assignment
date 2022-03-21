@@ -5,6 +5,13 @@
 Restful API that exposes a route to get “GeoJSON features” of a location given with a geolocation box (bounding box) as input. App is built using [Nest](https://github.com/nestjs/nest) framework TypeScript
 starter repository.
 
+## Cloning
+
+```bash
+$ git clone https://github.com/noviewpoint/geolocation-api-assignment
+$ cd geolocation-api-assignment
+```
+
 ## Installation
 
 ```bash
@@ -26,7 +33,7 @@ $ npm run start:prod
 
 ## OpenAPI Swagger documentation
 
-To see API documentation, start the app and visit http://localhost:3000/docs in your browser.
+To see API documentation, start the app and visit `http://localhost:3000/docs` in your browser.
 
 ## Test
 
