@@ -5,8 +5,6 @@
 Restful API that exposes a route to get “GeoJSON features” of a location given with a geolocation box (bounding box) as input. App is built using [Nest](https://github.com/nestjs/nest) framework TypeScript
 starter repository.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
