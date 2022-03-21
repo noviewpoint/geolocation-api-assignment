@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import axios from "axios";
+import * as osmtogeojson from "osmtogeojson";
 
 @Injectable()
 export class AppService {
@@ -7,17 +8,20 @@ export class AppService {
     return "Hello World!";
   }
 
-  // https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
+  // READ:
+  // API DOCS: https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
+  // OSM TO GEOJSON CONVERTING PACKAGE: https://www.npmjs.com/package/osmtogeojson
   async getRouteToLocation(bbox: string) {
-    let data;
+    let geoJsonData;
     try {
-      data = await axios.get(
-        `https://wiki.openstreetmap.org/api/0.6/map?bbox=${bbox}`
+      const res = await axios.get(
+        `https://www.openstreetmap.org/api/0.6/map?bbox=${bbox}`
       );
+      geoJsonData = osmtogeojson(res?.data);
     } catch (ex) {
       console.error(ex);
     }
-
-    return data;
+    // The result is a javascript object of GeoJSON data or undefined in case of exception
+    return geoJsonData;
   }
 }

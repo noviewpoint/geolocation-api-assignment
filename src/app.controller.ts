@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Get("routeToLocation/:bbox")
-  getRouteToLocation(@Param() bbox: string) {
+  getRouteToLocation(@Param("bbox") bbox: string) {
     return this.appService.getRouteToLocation(bbox);
   }
 }
